@@ -37,79 +37,97 @@ int main()
 
 	do
 	{
-		glfwPollEvents();
-
-		KEYRETURN returned_key = keystates.checkKeys(lines, display_context, user_settings);
-
-		bool base_change = false;
-
-		if (returned_key == ENTER && base_change == false)
+		try
 		{
-			entered_string = lines.convertCurrentLine();
+			glfwPollEvents();
 
-			solution answer = solve(entered_string, previous, user_settings);
+			KEYRETURN returned_key = keystates.checkKeys(lines, display_context, user_settings);
 
-			if (answer.getError())
+			bool base_change = false;
+
+			if (returned_key == ENTER && base_change == false)
 			{
-				string error_string = "INVALID ENTRY";
+				entered_string = lines.convertCurrentLine();
+
+				solution answer = solve(entered_string, previous, user_settings);
+
+				if (answer.getError())
+				{
+					string error_string = "INVALID ENTRY";
+					line error_line(origin);
+					error_line.addString(error_string);
+					lines.addLine(error_line);
+				}
+
+				else
+				{
+					string answer_string = answer.getSolved().getNumberString(true, false, 20);
+					log_file.open("calc_log_file.txt", std::ofstream::out);
+					log_file.write(&answer_string[0], answer_string.length());
+					log_file.close();
+
+					line solved_line(origin);
+					string solved_string = "= ";
+					solved_string += answer.getSolved().getNumberString(true, false, 10);
+					solved_line.addString(solved_string);
+					lines.addLine(solved_line);
+					previous = answer.getSolved();
+				}
+
+				string spacer_string = "---------";
+				line spacer_line(origin);
+				spacer_line.addString(spacer_string);
+				lines.addLine(spacer_line);
+
+				lines.addLine(line(origin));
+			}
+
+			else if (returned_key == ENTER && base_change == true)
+			{
+
+			}
+
+			else if (returned_key == BASE)
+			{
+				base_change = true;
+				string error_string = "ENTER DESIRED BASE";
 				line error_line(origin);
 				error_line.addString(error_string);
 				lines.addLine(error_line);
 			}
 
-			else
+			else if (returned_key == OPTIONS)
 			{
-				string answer_string = answer.getSolved().getNumberString(true, false, 20);
-				log_file.open("calc_log_file.txt", std::ofstream::out);
-				log_file.write(&answer_string[0], answer_string.length());
-				log_file.close();
 
-				line solved_line(origin);
-				string solved_string = "= ";
-				solved_string += answer.getSolved().getNumberString(true, false, 10);
-				solved_line.addString(solved_string);
-				lines.addLine(solved_line);
-				previous = answer.getSolved();
 			}
 
-			string spacer_string = "---------";
-			line spacer_line(origin);
-			spacer_line.addString(spacer_string);
-			lines.addLine(spacer_line);
+			/*
+			test *= bignum(10);
+			line test_line(origin);
+			test_line.addString(test.getNumberString(true, false, 10));
+			lines.addLine(test_line);
+			*/
 
+			display_context.render(lines);
+
+			if (lines.getCount() > 20)
+				lines.removeLine();
+		}
+
+		catch (bignum_Error caught)
+		{
+			string error = caught.getErrorReport();
+			std::ofstream error_log;
+			error_log.open("JEPbignum_error_log.txt", std::ofstream::out);
+			error_log.write(&error[0], error.length());
+			error_log.close();
+			
+			string error_report = "AN ERROR HAS OCCURRED, PLEASE CHECK THE ERROR LOG";
+			line error_line(origin);
+			error_line.addString(error_report);
+			lines.addLine(error_line);
 			lines.addLine(line(origin));
 		}
-
-		else if (returned_key == ENTER && base_change == true)
-		{
-
-		}
-
-		else if (returned_key == BASE)
-		{
-			base_change = true;
-			string error_string = "ENTER DESIRED BASE";
-			line error_line(origin);
-			error_line.addString(error_string);
-			lines.addLine(error_line);
-		}
-
-		else if (returned_key == OPTIONS)
-		{
-
-		}
-
-		/*
-		test *= bignum(10);
-		line test_line(origin);
-		test_line.addString(test.getNumberString(true, false, 10));
-		lines.addLine(test_line);
-		*/
-
-		display_context.render(lines);
-
-		if (lines.getCount() > 20)
-			lines.removeLine();
 
 	} while (glfwGetKey(display_context.getWindow(), GLFW_KEY_ESCAPE) != GLFW_PRESS && 
 		!glfwWindowShouldClose(display_context.getWindow()));

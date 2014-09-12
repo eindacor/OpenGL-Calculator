@@ -16,6 +16,7 @@ public:
 private:
 	vec2 base_point;
 	vec4 indices[6];
+	int width;
 };
 
 class character

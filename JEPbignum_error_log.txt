@@ -1,0 +1,1 @@
+JEPbignum.cpp (line ¤): bignum divideNumbers(bignum bn1, bignum bn2)2: The program has attempted to calculate a value outside of its limits

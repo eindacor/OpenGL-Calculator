@@ -213,19 +213,19 @@ void display_handler::render(line_group lines)
 	glClear(GL_COLOR_BUFFER_BIT);
 	glUseProgram(program_ID);
 
-	//returns width of largest releveant line
-	int numchars = lines.getCurrentRange();
-
 	//creates a range based on desired character padding
-	int range = 6 + (numchars - 1) + (numchars * 3);
+	int margains = MARGAINS * 2;
+	int range = margains + lines.getCurrentRange();
+
+	float min_scale = 35 + (4 * LINE_PADDING);
+	min_scale = 1 / min_scale;
 
 	//minimum of 29 required (based on incorporating entire line above)
 	//range = (range < 29 ? 29 : range);
 	float x_offset = float(range) / -2;
-	float y_offset = -5.5f;
+	float y_offset = -5.0f;
 	float scale = 2.0f / float(range);
-	scale = (scale > .03077f ? .03077f : scale);
-
+	scale = (scale > min_scale ? min_scale : scale);
 
 	//translate/scale the world coordinates to clip space
 	glm::mat4 translation_matrix = glm::translate(mat4(1.0f), vec3(x_offset, y_offset, 0.0f));
@@ -260,12 +260,12 @@ void display_handler::render(line_group lines)
 
 		//generate cursor triangles based on current location
 		float cursor_triangles[] = {
-			cursor.x, cursor.y, cursor.z, 1.0f,
-			cursor.x, cursor.y + 7.0f, cursor.z, 1.0f,
-			cursor.x + 3.0f, cursor.y, cursor.z, 1.0f,
-			cursor.x + 3.0f, cursor.y, cursor.z, 1.0f,
-			cursor.x, cursor.y + 7.0f, cursor.z, 1.0f,
-			cursor.x + 3.0f, cursor.y + 7.0f, cursor.z, 1.0f,
+			cursor.x, cursor.y + 1.0f, cursor.z, 1.0f,
+			cursor.x, cursor.y + 9.0f, cursor.z, 1.0f,
+			cursor.x + 4.0f, cursor.y + 1.0f, cursor.z, 1.0f,
+			cursor.x + 4.0f, cursor.y + 1.0f, cursor.z, 1.0f,
+			cursor.x, cursor.y + 9.0f, cursor.z, 1.0f,
+			cursor.x + 4.0f, cursor.y + 9.0f, cursor.z, 1.0f,
 		};
 
 		//draw cursor

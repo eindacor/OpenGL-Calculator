@@ -63,7 +63,8 @@ KEYRETURN key_handler::checkKeys(line_group &lines, display_handler &display_con
 
 	if (checkPress(GLFW_KEY_5, window))
 	{
-		lines.addChar('5');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('%') : lines.addChar('5'));
 	}
 
 	if (checkPress(GLFW_KEY_6, window))
@@ -91,7 +92,8 @@ KEYRETURN key_handler::checkKeys(line_group &lines, display_handler &display_con
 
 	if (checkPress(GLFW_KEY_A, window))
 	{
-		lines.addChar('A');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('A') : lines.addChar('a'));
 	}
 
 	if (checkPress(GLFW_KEY_B, window))
@@ -99,127 +101,155 @@ KEYRETURN key_handler::checkKeys(line_group &lines, display_handler &display_con
 		if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS)
 			return BASE;
 		
-		else lines.addChar('B');
+		else
+		{
+			(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+				glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('B') : lines.addChar('b'));
+		}
 	}
 
 	if (checkPress(GLFW_KEY_C, window))
 	{
-		lines.addChar('C');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('C') : lines.addChar('c'));
 	}
 
 	if (checkPress(GLFW_KEY_D, window))
 	{
-		lines.addChar('D');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('D') : lines.addChar('d'));
 	}
 
 	if (checkPress(GLFW_KEY_E, window))
 	{
-		lines.addChar('E');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('E') : lines.addChar('e'));
 	}
 
 	if (checkPress(GLFW_KEY_F, window))
 	{
-		lines.addChar('F');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('F') : lines.addChar('f'));
 	}
 
 	if (checkPress(GLFW_KEY_G, window))
 	{
-		lines.addChar('G');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('G') : lines.addChar('g'));
 	}
 
 	if (checkPress(GLFW_KEY_H, window))
 	{
-		lines.addChar('H');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('H') : lines.addChar('h'));
 	}
 
 	if (checkPress(GLFW_KEY_I, window))
 	{
-		lines.addChar('I');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('I') : lines.addChar('i'));
 	}
 
 	if (checkPress(GLFW_KEY_J, window))
 	{
-		lines.addChar('J');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('J') : lines.addChar('j'));
 	}
 
 	if (checkPress(GLFW_KEY_K, window))
 	{
-		lines.addChar('K');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('K') : lines.addChar('k'));
 	}
 
 	if (checkPress(GLFW_KEY_L, window))
 	{
-		lines.addChar('L');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('L') : lines.addChar('l'));
 	}
 
 	if (checkPress(GLFW_KEY_M, window))
 	{
-		lines.addChar('M');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('M') : lines.addChar('m'));
 	}
 
 	if (checkPress(GLFW_KEY_N, window))
 	{
-		lines.addChar('N');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('N') : lines.addChar('n'));
 	}
 
 	if (checkPress(GLFW_KEY_O, window))
 	{
-		lines.addChar('O');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('O') : lines.addChar('o'));
 	}
 
 	if (checkPress(GLFW_KEY_P, window))
 	{
-		lines.addChar('P');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('P') : lines.addChar('p'));
 	}
 
 	if (checkPress(GLFW_KEY_Q, window))
 	{
-		lines.addChar('Q');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('Q') : lines.addChar('q'));
 	}
 
 	if (checkPress(GLFW_KEY_R, window))
 	{
-		lines.addChar('R');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('R') : lines.addChar('r'));
 	}
 
 	if (checkPress(GLFW_KEY_S, window))
 	{
-		lines.addChar('S');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('S') : lines.addChar('s'));
 	}
 
 	if (checkPress(GLFW_KEY_T, window))
 	{
-		lines.addChar('T');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('T') : lines.addChar('t'));
 	}
 
 	if (checkPress(GLFW_KEY_U, window))
 	{
-		lines.addChar('U');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('U') : lines.addChar('u'));
 	}
 
 	if (checkPress(GLFW_KEY_V, window))
 	{
-		lines.addChar('V');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('V') : lines.addChar('v'));
 	}
 
 	if (checkPress(GLFW_KEY_W, window))
 	{
-		lines.addChar('W');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('W') : lines.addChar('w'));
 	}
 
 	if (checkPress(GLFW_KEY_X, window))
 	{
-		lines.addChar('X');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('X') : lines.addChar('x'));
 	}
 
 	if (checkPress(GLFW_KEY_Y, window))
 	{
-		lines.addChar('Y');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('Y') : lines.addChar('y'));
 	}
 
 	if (checkPress(GLFW_KEY_Z, window))
 	{
-		lines.addChar('Z');
+		(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS ? lines.addChar('Z') : lines.addChar('z'));
 	}
 
 	if (checkPress(GLFW_KEY_SPACE, window))

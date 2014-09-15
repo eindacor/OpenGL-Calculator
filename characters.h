@@ -16,7 +16,6 @@ public:
 private:
 	vec2 base_point;
 	vec4 indices[6];
-	int width;
 };
 
 class character
@@ -28,12 +27,14 @@ public:
 	void addPixel(int i);
 	void draw(GLuint VBO);
 	void changeBase(vec2 origin);
+	int getWidth() { return character_width; }
 
 	vec2 getBase() { return base_point; }
 
 private:
 	vec2 base_point;
 	vector<pixel> pixels;
+	int character_width;
 };
 
 class line
@@ -48,10 +49,11 @@ public:
 	void draw(GLuint VBO);
 	void addString(string s);
 	string getString() { return line_string; }
+	int getCharCount() { return characters.size(); }
 
 	vec4 getCursor() { return cursor; }
 
-	int getRange() { return characters.size(); }
+	int getRange();
 
 private:
 	vec4 cursor;

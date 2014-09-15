@@ -30,8 +30,6 @@ int main()
 	settings user_settings(PRECISION, false, false);
 
 	glfwSetTime(0);
-
-	//bignum test(1);
 	
 	std::ofstream log_file;
 

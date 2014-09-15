@@ -48,19 +48,13 @@ void character::addPixel(int i)
 {
 	int x, y;
 
-	if (i == -1)
-	{
-		x = 1;
-		y = -1;
-	}
+	//column
+	x = i % 5;
+	//row
+	y = i / 5;
 
-	else
-	{
-		//column
-		x = i % 3;
-		//row
-		y = i / 3;
-	}
+	if (character_width <= x)
+		character_width = x + 1;
 
 	//base point of pixel is calculated relative to the character's base point
 	x += base_point.x;
@@ -93,678 +87,6 @@ void character::changeBase(vec2 origin)
 	}
 }
 
-//initializes the character using an index number referring to the Character Pixel Location Matrix (see header.h)
-character::character(vec2 origin, char c)
-{
-	//establish base point of the character
-	base_point = origin;
-
-	switch (c)
-	{
-	case ' ': break;
-
-	case '0':
-	case 'O':
-		addPixel(1);
-		addPixel(3);
-		addPixel(5);
-		addPixel(6);
-		addPixel(8);
-		addPixel(9);
-		addPixel(11);
-		addPixel(12);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(19);
-		break;
-
-	case '1':
-		addPixel(0);
-		addPixel(1);
-		addPixel(2);
-		addPixel(4);
-		addPixel(7);
-		addPixel(10);
-		addPixel(13);
-		addPixel(16);
-		addPixel(18);
-		addPixel(19);
-		break;
-
-	case '2':
-		addPixel(0);
-		addPixel(1);
-		addPixel(2);
-		addPixel(3);
-		addPixel(6);
-		addPixel(9);
-		addPixel(10);
-		addPixel(11);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(19);
-		addPixel(20);
-		break;
-
-	case '3':
-		addPixel(0);
-		addPixel(1);
-		addPixel(2);
-		addPixel(3);
-		addPixel(5);
-		addPixel(8);
-		addPixel(10);
-		addPixel(11);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(19);
-		addPixel(20);
-		break;
-
-	case '4':
-		addPixel(2);
-		addPixel(5);
-		addPixel(8);
-		addPixel(9);
-		addPixel(10);
-		addPixel(11);
-		addPixel(12);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(20);
-		break;
-
-	case '5':
-		addPixel(0);
-		addPixel(1);
-		addPixel(2);
-		addPixel(3);
-		addPixel(5);
-		addPixel(8);
-		addPixel(9);
-		addPixel(10);
-		addPixel(11);
-		addPixel(12);
-		addPixel(15);
-		addPixel(18);
-		addPixel(19);
-		addPixel(20);
-		break;
-
-	case '6':
-		addPixel(0);
-		addPixel(1);
-		addPixel(2);
-		addPixel(3);
-		addPixel(5);
-		addPixel(6);
-		addPixel(8);
-		addPixel(9);
-		addPixel(10);
-		addPixel(11);
-		addPixel(12);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(19);
-		addPixel(20);
-		break;
-
-	case '7':
-		addPixel(1);
-		addPixel(4);
-		addPixel(7);
-		addPixel(10);
-		addPixel(14);
-		addPixel(17);
-		addPixel(18);
-		addPixel(19);
-		addPixel(20);
-		break;
-
-	case '8':
-		addPixel(0);
-		addPixel(1);
-		addPixel(2);
-		addPixel(3);
-		addPixel(5);
-		addPixel(6);
-		addPixel(8);
-		addPixel(9);
-		addPixel(10);
-		addPixel(11);
-		addPixel(12);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(19);
-		addPixel(20);
-		break;
-
-	case '9':
-		addPixel(2);
-		addPixel(5);
-		addPixel(8);
-		addPixel(9);
-		addPixel(10);
-		addPixel(11);
-		addPixel(12);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(19);
-		addPixel(20);
-		break;
-
-	case 'A':
-		addPixel(0);
-		addPixel(2);
-		addPixel(3);
-		addPixel(5);
-		addPixel(6);
-		addPixel(8);
-		addPixel(9);
-		addPixel(10);
-		addPixel(11);
-		addPixel(12);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(19);
-		break;
-
-	case 'B':
-		addPixel(0);
-		addPixel(1);
-		addPixel(3);
-		addPixel(5);
-		addPixel(6);
-		addPixel(8);
-		addPixel(9);
-		addPixel(10);
-		addPixel(12);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(19);
-		break;
-
-	case 'C':
-		addPixel(0);
-		addPixel(1);
-		addPixel(2);
-		addPixel(3);
-		addPixel(5);
-		addPixel(6);
-		addPixel(9);
-		addPixel(12);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(19);
-		addPixel(20);
-		break;
-
-	case 'D':
-		addPixel(0);
-		addPixel(1);
-		addPixel(3);
-		addPixel(5);
-		addPixel(6);
-		addPixel(8);
-		addPixel(9);
-		addPixel(11);
-		addPixel(12);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(19);
-		break;
-
-	case 'E':
-		addPixel(0);
-		addPixel(1);
-		addPixel(2);
-		addPixel(3);
-		addPixel(6);
-		addPixel(9);
-		addPixel(10);
-		addPixel(12);
-		addPixel(15);
-		addPixel(18);
-		addPixel(19);
-		addPixel(20);
-		break;
-
-	case 'F':
-		addPixel(0);
-		addPixel(3);
-		addPixel(6);
-		addPixel(9);
-		addPixel(10);
-		addPixel(12);
-		addPixel(15);
-		addPixel(18);
-		addPixel(19);
-		addPixel(20);
-		break;
-
-	case 'G':
-		addPixel(1);
-		addPixel(2);
-		addPixel(3);
-		addPixel(5);
-		addPixel(6);
-		addPixel(8);
-		addPixel(9);
-		addPixel(11);
-		addPixel(12);
-		addPixel(15);
-		addPixel(19);
-		addPixel(20);
-		break;
-
-	case 'H':
-		addPixel(0);
-		addPixel(2);
-		addPixel(3);
-		addPixel(5);
-		addPixel(6);
-		addPixel(8);
-		addPixel(9);
-		addPixel(10);
-		addPixel(11);
-		addPixel(12);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(20);
-		break;
-
-	case 'I':
-		addPixel(0);
-		addPixel(1);
-		addPixel(2);
-		addPixel(4);
-		addPixel(7);
-		addPixel(10);
-		addPixel(13);
-		addPixel(16);
-		addPixel(18);
-		addPixel(19);
-		addPixel(20);
-		break;
-
-	case 'J':
-		addPixel(1);
-		addPixel(3);
-		addPixel(5);
-		addPixel(6);
-		addPixel(8);
-		addPixel(11);
-		addPixel(14);
-		addPixel(17);
-		addPixel(20);
-		break;
-
-	case 'K':
-		addPixel(0);
-		addPixel(2);
-		addPixel(3);
-		addPixel(5);
-		addPixel(6);
-		addPixel(8);
-		addPixel(9);
-		addPixel(10);
-		addPixel(12);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(20);
-		break;
-
-	case 'L':
-		addPixel(0);
-		addPixel(1);
-		addPixel(2);
-		addPixel(3);
-		addPixel(6);
-		addPixel(9);
-		addPixel(12);
-		addPixel(15);
-		addPixel(18);
-		break;
-
-	case 'M':
-		addPixel(0);
-		addPixel(2);
-		addPixel(3);
-		addPixel(5);
-		addPixel(6);
-		addPixel(8);
-		addPixel(9);
-		addPixel(10);
-		addPixel(11);
-		addPixel(12);
-		addPixel(13);
-		addPixel(14);
-		addPixel(15);
-		addPixel(16);
-		addPixel(17);
-		addPixel(18);
-		addPixel(20);
-		break;
-
-	case 'N':
-		addPixel(0);
-		addPixel(2);
-		addPixel(3);
-		addPixel(5);
-		addPixel(6);
-		addPixel(8);
-		addPixel(9);
-		addPixel(10);
-		addPixel(11);
-		addPixel(12);
-		addPixel(13);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(20);
-		break;
-
-	case 'P':
-		addPixel(0);
-		addPixel(3);
-		addPixel(6);
-		addPixel(9);
-		addPixel(10);
-		addPixel(12);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(19);
-		break;
-
-	case 'Q':
-		addPixel(2);
-		addPixel(4);
-		addPixel(6);
-		addPixel(8);
-		addPixel(9);
-		addPixel(11);
-		addPixel(12);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(19);
-		break;
-
-	case 'R':
-		addPixel(0);
-		addPixel(2);
-		addPixel(3);
-		addPixel(5);
-		addPixel(6);
-		addPixel(8);
-		addPixel(9);
-		addPixel(10);
-		addPixel(12);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(19);
-		break;
-
-	case 'S':
-		addPixel(0);
-		addPixel(1);
-		addPixel(2);
-		addPixel(3);
-		addPixel(5);
-		addPixel(8);
-		addPixel(9);
-		addPixel(10);
-		addPixel(11);
-		addPixel(12);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(19);
-		addPixel(20);
-		break;
-
-	case 'T':
-		addPixel(1);
-		addPixel(4);
-		addPixel(7);
-		addPixel(10);
-		addPixel(13);
-		addPixel(16);
-		addPixel(18);
-		addPixel(19);
-		addPixel(20);
-		break;
-
-	case 'U':
-		addPixel(0);
-		addPixel(1);
-		addPixel(2);
-		addPixel(3);
-		addPixel(5);
-		addPixel(6);
-		addPixel(8);
-		addPixel(9);
-		addPixel(11);
-		addPixel(12);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(20);
-		break;
-
-	case 'V':
-		addPixel(1);
-		addPixel(4);
-		addPixel(6);
-		addPixel(8);
-		addPixel(9);
-		addPixel(11);
-		addPixel(12);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(20);
-		break;
-
-	case 'W':
-		addPixel(0);
-		addPixel(2);
-		addPixel(3);
-		addPixel(4);
-		addPixel(5);
-		addPixel(6);
-		addPixel(7);
-		addPixel(8);
-		addPixel(9);
-		addPixel(10);
-		addPixel(11);
-		addPixel(12);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(20);
-		break;
-
-	case 'X':
-		addPixel(0);
-		addPixel(2);
-		addPixel(3);
-		addPixel(5);
-		addPixel(6);
-		addPixel(8);
-		addPixel(10);
-		addPixel(12);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(20);
-		break;
-
-	case 'Y':
-		addPixel(1);
-		addPixel(4);
-		addPixel(7);
-		addPixel(10);
-		addPixel(12);
-		addPixel(14);
-		addPixel(15);
-		addPixel(17);
-		addPixel(18);
-		addPixel(20);
-		break;
-
-	case 'Z':
-		addPixel(0);
-		addPixel(1);
-		addPixel(2);
-		addPixel(3);
-		addPixel(6);
-		addPixel(10);
-		addPixel(14);
-		addPixel(17);
-		addPixel(18);
-		addPixel(19);
-		addPixel(20);
-		break;
-
-	case '=':
-		addPixel(6);
-		addPixel(7);
-		addPixel(8);
-		addPixel(12);
-		addPixel(13);
-		addPixel(14);
-		break;
-
-	case '+':
-		addPixel(7);
-		addPixel(9);
-		addPixel(10);
-		addPixel(11);
-		addPixel(13);
-		break;
-
-	case '-':
-		addPixel(9);
-		addPixel(10);
-		addPixel(11);
-		break;
-
-	case '*':
-		addPixel(6);
-		addPixel(8);
-		addPixel(10);
-		addPixel(12);
-		addPixel(14);
-		break;
-
-	case '/':
-		addPixel(6);
-		addPixel(10);
-		addPixel(14);
-		break;
-
-	case '^':
-		addPixel(15);
-		addPixel(17);
-		addPixel(19);
-		break;
-
-	case '!':
-		addPixel(4);
-		addPixel(10);
-		addPixel(13);
-		addPixel(16);
-		break;
-
-	case '(':
-		addPixel(2);
-		addPixel(4);
-		addPixel(6);
-		addPixel(9);
-		addPixel(12);
-		addPixel(16);
-		addPixel(20);
-		break;
-
-	case ')':
-		addPixel(0);
-		addPixel(4);
-		addPixel(8);
-		addPixel(11);
-		addPixel(14);
-		addPixel(16);
-		addPixel(18);
-		break;
-
-	case '.':
-		addPixel(1);
-		break;
-
-	case ',':
-		addPixel(1);
-		addPixel(-1);
-		break;
-
-	/*
-	case '0':
-		addPixel(0);
-		addPixel(1);
-		addPixel(2);
-		addPixel(3);
-		addPixel(4);
-		addPixel(5);
-		addPixel(6);
-		addPixel(7);
-		addPixel(8);
-		addPixel(9);
-		addPixel(10);
-		addPixel(11);
-		addPixel(12);
-		addPixel(13);
-		addPixel(14);
-		addPixel(15);
-		addPixel(16);
-		addPixel(17);
-		addPixel(18);
-		addPixel(19);
-		addPixel(20);
-		break;
-	*/
-	}
-}
-
 line::line(vec4 origin)
 {
 	cursor = vec4(origin.x, origin.y, 0.0f, 1.0f);
@@ -773,15 +95,31 @@ line::line(vec4 origin)
 void line::addString(string added_string)
 {
 	int length = added_string.length();
-	mat4 nextChar = glm::translate(mat4(1.0f), vec3(4.0f, 0.0f, 0.0f));
-
 	for (int i = 0; i < length; i++)
 	{
+		character to_add(vec2(cursor.x, cursor.y), added_string[i]);
+
+		//determine offset based on character added
+		float x_offset = to_add.getWidth();
+		mat4 nextChar = glm::translate(mat4(1.0f), vec3((x_offset + TEXT_PADDING), 0.0f, 0.0f));
+
 		characters.push_back(character(vec2(cursor.x, cursor.y), added_string[i]));
 		cursor = nextChar * cursor;
 	}
 
 	line_string += added_string;
+}
+
+int line::getRange()
+{
+	int range = 0;
+
+	for (vector<character>::iterator i = characters.begin(); i != characters.end(); i++)
+	{
+		range += i->getWidth();
+	}
+
+	return range;
 }
 
 void line::lineUp()
@@ -791,15 +129,19 @@ void line::lineUp()
 	for (vector<character>::iterator i = characters.begin(); i != characters.end(); i++)
 	{
 		new_point = i->getBase();
-		new_point.y += 9.0f;
+		new_point.y += 9.0f + LINE_PADDING;
 		i->changeBase(new_point);
 	}
 }
 
 void line::addChar(char c)
 {
+	character temp(vec2(cursor.x, cursor.y), c);
+	float x_offset = float(temp.getWidth());
+	x_offset += TEXT_PADDING;
+
 	//set translation matrix for cursor
-	mat4 nextChar = glm::translate(mat4(1.0f), vec3(4.0f, 0.0f, 0.0f));
+	mat4 nextChar = glm::translate(mat4(1.0f), vec3(x_offset, 0.0f, 0.0f));
 
 	characters.push_back(character(vec2(cursor.x, cursor.y), c));
 	cursor = nextChar * cursor;
@@ -810,7 +152,12 @@ void line::removeChar()
 {
 	if (characters.size() > 0)
 	{
-		mat4 nextChar = glm::translate(mat4(1.0f), vec3(-4.0f, 0.0f, 0.0f));
+		vector<character>::iterator i = characters.end() - 1;
+		float x_offset = float(i->getWidth());
+		x_offset += TEXT_PADDING;
+		x_offset *= -1.0f;
+		mat4 nextChar = glm::translate(mat4(1.0f), vec3(x_offset, 0.0f, 0.0f));
+
 		characters.pop_back();
 		cursor = nextChar * cursor;
 		line_string.erase(line_string.end() - 1);
@@ -863,41 +210,38 @@ void line_group::addChar(char c)
 
 int line_group::getCurrentRange()
 {
-	int highest = 4;
+	int char_width_total = 0;
 	vector<line>::iterator target = line_list.end();
+	int padding;
+	bool first_highest = true;
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		target--;
-		highest = (target->getRange() > highest ? target->getRange() : highest);
+		if (target->getRange() > char_width_total)
+		{
+			char_width_total = target->getRange();
+			padding = ((target->getCharCount()-1) * TEXT_PADDING);
+
+			if (i != 0)
+				first_highest = false;
+		}
 
 		if (target == line_list.begin())
-			return highest;
+		{
+			char_width_total += padding;
+			return char_width_total;
+		}
 	}
 
-	return highest + 1.0f;
-	
-
-	/*
-	//analyze the previous line
-	vector<line>::iterator target = line_list.end();
-	target--;
-
-	int range_last = target->getRange();
-
-	//if the last line only has one element, return the range of the previous
-	if (line_list.size() == 1)
+	char_width_total += padding;
+	if (first_highest == true)
 	{
-		return range_last + 1.0f;
+		char_width_total += (5 + TEXT_PADDING);
 	}
+		
 
-	else target--;
-
-	//if the 2nd to last line is longer than the last, return it. otherwise return the current line's range +1 for the cursor
-	int temp = (range_last > target->getRange() ? range_last : target->getRange());
-	temp += 1.0f;
-	return temp;
-	*/
+	return char_width_total;
 }
 
 vec4 line_group::getCursor()

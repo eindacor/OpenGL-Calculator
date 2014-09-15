@@ -74,6 +74,7 @@ public:
 	vec4 getCursor();
 	void removeLine();
 	int getCount() { return line_list.size(); }
+	void clear();
 
 	string convertCurrentLine();
 

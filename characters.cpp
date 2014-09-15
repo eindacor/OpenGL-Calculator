@@ -235,12 +235,13 @@ int line_group::getCurrentRange()
 	}
 
 	char_width_total += padding;
+
+	//adds additional space for the cursor if the active line is the largest in scope
 	if (first_highest == true)
 	{
 		char_width_total += (5 + TEXT_PADDING);
 	}
 		
-
 	return char_width_total;
 }
 
@@ -262,4 +263,9 @@ string line_group::convertCurrentLine()
 void line_group::removeLine()
 {
 	line_list.erase(line_list.begin());
+}
+
+void line_group::clear()
+{
+	line_list.clear();
 }

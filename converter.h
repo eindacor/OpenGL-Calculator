@@ -29,7 +29,7 @@ private:
 class settings
 {
 public:
-	settings() { round = PRECISION; percent = false; showDigits = false; base = 10; }
+	settings() { round = ONES_PLACE; percent = false; showDigits = false; base = 10; }
 	settings(int n, bool b, bool d) { round = n; percent = b; showDigits = d; base = 10; }
 	~settings(){};
 

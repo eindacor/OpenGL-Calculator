@@ -7,7 +7,10 @@ void convertString(string line, vector<character> &characters, vec4 &origin)
 
 int main()
 {
-	display_handler display_context("The Window", "fragment_shader.glsl", "vertex_shader.glsl");
+	string frag_shader_path = "J:/GitHub/OpenGL-Calculator/fragment_shader.glsl";
+	string vertex_shader_path = "J:/GitHub/OpenGL-Calculator/vertex_shader.glsl";
+
+	display_handler display_context("The Window", frag_shader_path, vertex_shader_path);
 
 	if (display_context.getErrors() == true)
 	{
@@ -27,7 +30,7 @@ int main()
 	string entered_string;
 
 	bignum previous;
-	settings user_settings(PRECISION, false, false);
+	settings user_settings(ONES_PLACE, false, false);
 
 	glfwSetTime(0);
 	
@@ -122,7 +125,7 @@ int main()
 				lines.removeLine();
 		}
 
-		catch (bignum_Error caught)
+		catch (error_handler caught)
 		{
 			string error = caught.getErrorReport();
 			std::ofstream error_log;

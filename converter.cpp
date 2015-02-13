@@ -2,7 +2,7 @@
 
 void settings::setRound(int n)
 {
-	if (n>PRECISION)
+	if (n>ONES_PLACE)
 	{
 		cout << "Cannot satisfy request" << endl;
 	}
@@ -283,11 +283,12 @@ bignum numberFromVector(vector<int> &vec, int dec, settings &user)
 	for (int i = 0; i<vec.size(); i++)
 	{
 		int numberToUse = vec.at(vec.size() - i - 1);
-		int locationToSet = PRECISION + i;
+		int locationToSet = ONES_PLACE + i;
 		temp.setDigit(locationToSet, numberToUse);
 	}
 
-	temp.divideByTen(dec);
+	for (int i = 0; i < dec; i++)
+		temp /= 10;
 
 	return temp;
 }
@@ -427,7 +428,7 @@ bool checkValid(list<calc_ptr> &itemList)
 			list<calc_ptr>::iterator i1 = std::prev(i, 2);
 
 			//  3 symbols in a row
-			if ((*i1)->getItemType() == SYMBOL && (*i2)->getItemType() == SYMBOL && (*i3)->getItemType() == NUMBER && (*i3)->getStoredNumber().getNegative() == true)
+			if ((*i1)->getItemType() == SYMBOL && (*i2)->getItemType() == SYMBOL && (*i3)->getItemType() == NUMBER && (*i3)->getStoredNumber().isNegative() == true)
 			{
 				RETURN_FALSE;
 			}
@@ -483,7 +484,7 @@ bool checkValid(list<calc_ptr> &itemList)
 				}
 
 				//  -4!
-				if ((*i)->getStoredNumber().getNegative() == true && (*after)->getItemType() == SYMBOL && (*after)->getSymbolType() == FACTORIAL)
+				if ((*i)->getStoredNumber().isNegative() == true && (*after)->getItemType() == SYMBOL && (*after)->getSymbolType() == FACTORIAL)
 				{
 					RETURN_FALSE;
 				}
@@ -561,10 +562,7 @@ bool checkValid(list<calc_ptr> &itemList)
 					oParenCount++;
 				}
 
-				else
-				{
-					cParenCount++;
-				}
+				else cParenCount++;
 
 				break;
 
@@ -603,7 +601,7 @@ bool checkValid(list<calc_ptr> &itemList)
 				}
 
 				// -4!
-				if ((*i)->getStoredNumber().getNegative() == true && (*after)->getItemType() == SYMBOL && (*after)->getSymbolType() == FACTORIAL)
+				if ((*i)->getStoredNumber().isNegative() == true && (*after)->getItemType() == SYMBOL && (*after)->getSymbolType() == FACTORIAL)
 				{
 					RETURN_FALSE;
 				}
@@ -787,9 +785,7 @@ bool swapItems(list<calc_ptr> &itemList)
 list<calc_ptr>::iterator simplifyRange(list <calc_ptr> &itemList, list <calc_ptr>::iterator i1, list <calc_ptr>::iterator i2, bignum bn)
 {
 	list <calc_ptr>::iterator insertionPoint = addNumberToList(itemList, i2, bn);
-
 	itemList.erase(i1, insertionPoint);
-
 	return insertionPoint;
 }
 
@@ -1047,59 +1043,6 @@ bool generateProblem(string &c, list <calc_ptr> &itemList, settings &user, bignu
 
 	for (int i = 0; i<counter; i++)
 	{
-		//if "pi" has been entered, add a pi number and advance the counter
-		if (checkWord(c, i, "pi"))
-		{
-			if (primer.getNumbers()>0)
-			{
-				temp = numberFromVector(numberVector, primer.getDecimalCount(), user);
-				addNumberToList(itemList, itemList.end(), temp);
-				primer.reset();
-				numberVector.clear();
-
-				//add * between the number and pi
-				addCharToList(itemList, itemList.end(), '*');
-			}
-
-			string piString(PI);
-			bignum piNumber(piString);
-			piNumber.convertBase(user.getBase());
-
-			temp = piNumber;
-
-			addNumberToList(itemList, itemList.end(), temp);
-			numberVector.clear();
-
-			i += 2;
-		}
-
-		//if "theta" has been entered, add a theta number and advance the counter
-		if (checkWord(c, i, "theta"))
-		{
-			//if primer is set, add number
-			if (primer.getNumbers()>0)
-			{
-				temp = numberFromVector(numberVector, primer.getDecimalCount(), user);
-				addNumberToList(itemList, itemList.end(), temp);
-				primer.reset();
-				numberVector.clear();
-
-				//add * between the number and theta
-				addCharToList(itemList, itemList.end(), '*');
-			}
-
-			string thetaString(THETA);
-			bignum thetaNumber(thetaString);
-			thetaNumber.convertBase(user.getBase());
-
-			temp = thetaNumber;
-
-			addNumberToList(itemList, itemList.end(), temp);
-			numberVector.clear();
-
-			i += 5;
-		}
-
 		//if "answer" has been entered, add previous number and advance the counter
 		if (checkWord(c, i, "ans"))
 		{
@@ -1321,11 +1264,6 @@ solution solve(string &entered, bignum &previous, settings &user)
 	{
 		RETURN_ERROR;
 	}
-
-	//prints entered problem before simplifying
-	cout << "Entered: \n";
-	//printList(itemList, usePrevious, user);
-	cout << endl;
 
 	//simplification loop
 	do
@@ -1585,7 +1523,7 @@ bool changeBase(string c, settings &user)
 
 /*
 
-settings user(PRECISION, false, false);
+settings user(ONES_PLACE, false, false);
 
 int analyze(line passed, settings user)
 {
@@ -1672,7 +1610,7 @@ int analyze(line passed, settings user)
 ORIGINAL MAIN BELOW
 {
 
-settings user(PRECISION, false, false);
+settings user(ONES_PLACE, false, false);
 
 string entered;
 bool exit = false;

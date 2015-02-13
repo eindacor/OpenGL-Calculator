@@ -212,7 +212,7 @@ int line_group::getCurrentRange()
 {
 	int char_width_total = 0;
 	vector<line>::iterator target = line_list.end();
-	int padding;
+	int padding = 0;
 	bool first_highest = true;
 
 	for (int i = 0; i < 4; i++)

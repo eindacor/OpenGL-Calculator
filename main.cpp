@@ -22,6 +22,7 @@ int main()
 		
 	vector<character> gl_characters;
 
+	//based on scaling point of characters, must be shifted to allow for margains
 	vec4 origin(3.0f, 2.0f, 0.0f, 1.0f);
 
 	line_group lines;

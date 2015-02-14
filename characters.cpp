@@ -115,9 +115,7 @@ int line::getRange()
 	int range = 0;
 
 	for (vector<character>::iterator i = characters.begin(); i != characters.end(); i++)
-	{
 		range += i->getWidth();
-	}
 
 	return range;
 }
@@ -215,6 +213,7 @@ int line_group::getCurrentRange()
 	int padding = 0;
 	bool first_highest = true;
 
+	// only accounts for last 4 lines, disregards older lines
 	for (int i = 0; i < 4; i++)
 	{
 		target--;

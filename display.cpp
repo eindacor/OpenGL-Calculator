@@ -220,8 +220,6 @@ void display_handler::render(line_group lines)
 	float min_scale = 35 + (4 * LINE_PADDING);
 	min_scale = 1 / min_scale;
 
-	//minimum of 29 required (based on incorporating entire line above)
-	//range = (range < 29 ? 29 : range);
 	float x_offset = float(range) / -2;
 	float y_offset = -5.0f;
 	float scale = 2.0f / float(range);

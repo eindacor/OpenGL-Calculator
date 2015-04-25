@@ -7,8 +7,8 @@ void convertString(string line, vector<character> &characters, vec4 &origin)
 
 int main()
 {
-	string frag_shader_path = "fragment_shader.glsl";
-	string vertex_shader_path = "vertex_shader.glsl";
+	string frag_shader_path = "./fragment_shader.glsl";
+	string vertex_shader_path = "./vertex_shader.glsl";
 	//string frag_shader_path = "J:/GitHub/OpenGL-Calculator/fragment_shader.glsl";
 	//string vertex_shader_path = "J:/GitHub/OpenGL-Calculator/vertex_shader.glsl";
 
